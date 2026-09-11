@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package inventory;
+
+// =========================================
+// SERVICES
+// =========================================
+
+// Exposes functions for the Client Nodes
+service ClientService {
+  rpc login(LoginRequest) returns (LoginResponse);
+  rpc logout(TokenMessage) returns (StatusResponse);
+  rpc post(PostRequest) returns (StatusResponse);
+  rpc get(GetRequest) returns (GetResponse);
+}
+
+// Internal Application Server operations
+service AppServerService {
+  rpc processBusinessRequest(BusinessRequest) returns (StatusResponse);
+}
+
+// Exposes functions for the separated AI/LLM Server
+service LLMService {
+  rpc getLLMAnswer(LLMRequest) returns (LLMAnswerResponse);
+}
+
+
+// =========================================
+// MESSAGES (Data Structures)
+// =========================================
+
+// --- Client Messages ---
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string status = 1;
+  optional string token = 2; 
+}
+
+message TokenMessage {
+  string token = 1;
+}
+
+message StatusResponse {
+  string status = 1;
+}
+
+message PostRequest {
+  string token = 1;
+  string type = 2;
+  string data = 3;
+}
+
+message GetRequest {
+  string token = 1;
+  string type = 2;
+  optional string params = 3;
+}
+
+message DataItem {
+  string id = 1;
+  string data = 2;
+}
+
+message GetResponse {
+  string status = 1;
+  repeated DataItem items = 2;
+}
+
+// --- App Server Internal Messages ---
+message BusinessRequest {
+  string request_id = 1;
+  string payload = 2;
+  string context = 3;
+}
+
+// --- LLM Server Messages ---
+message LLMRequest {
+  string request_id = 1;
+  string query = 2;
+  string context = 3;
+}
+
+message LLMAnswerResponse {
+  string request_id = 1;
+  string answer = 2;
+}
+
