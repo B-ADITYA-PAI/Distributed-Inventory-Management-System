@@ -547,30 +547,7 @@ If it reports starting stock other than 10, restart `app_server.py` and run it a
 
 ---
 
-# 11. Recommended Video Demonstration
-
-For the recorded submission:
-
-1. Start Ollama and show that Qwen3 is installed.
-2. Start `llm_server.py` in Terminal 1.
-3. Start `app_server.py` in Terminal 2.
-4. Run `client.py` in Terminal 3.
-5. Show the `12 products x 30 days = 360 observations` dataset summary.
-6. Demonstrate stock decrement from 10 to 6.
-7. Demonstrate the insufficient-stock rejection.
-8. Demonstrate negative quantity validation.
-9. Show the LLM demand forecasts.
-10. Show the LLM reorder recommendations.
-11. Show the LLM analytics report.
-12. Briefly switch to Terminal 1 during an AI request so the request ID/task from the LLM node is visible.
-13. Restart `app_server.py`.
-14. Run `test_concurrency.py` and show the passing result.
-
-The video does not need to show the internals of generated `inventory_pb2.py` or `inventory_pb2_grpc.py`.
-
----
-
-# 12. Limitations
+# 11. Limitations
 
 This is a Milestone 1 prototype and should be interpreted within that scope.
 
@@ -620,7 +597,7 @@ The AI features depend on Ollama and the local `qwen3:1.7b` model being availabl
 
 ---
 
-# 13. Troubleshooting
+# 12. Troubleshooting
 
 ## `Cannot reach Ollama`
 
@@ -642,17 +619,13 @@ python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. inventory.pro
 
 Also make sure the virtual environment is activated and dependencies were installed from `requirements.txt`.
 
-## Concurrency test reports stock 6 instead of 10
-
-The normal demo intentionally buys four mice first. Restart `app_server.py` and run the concurrency test against the fresh server.
-
 ## Port already in use
 
 Make sure an older `app_server.py` is not already running on port `50052` and an older `llm_server.py` is not already running on port `50051`.
 
 ---
 
-# 14. Final Milestone 1 Architecture
+# 13. Final Milestone 1 Architecture
 
 ```text
                     30-DAY MOCK SALES DATA
