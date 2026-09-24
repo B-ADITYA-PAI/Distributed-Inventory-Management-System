@@ -108,10 +108,10 @@ Stores the 12 products, initial stock levels, and 30-day mock sales histories.
 Defines the gRPC services and messages.
 
 **`inventory_pb2.py`**  
-Generated Protocol Buffer message classes. Do not edit manually.
+Generated Protocol Buffer message classes.
 
 **`inventory_pb2_grpc.py`**  
-Generated gRPC client stubs and server registration code. Do not edit manually.
+Generated gRPC client stubs and server registration code.
 
 **`app_server.py`**  
 Node 2. Handles authentication, inventory, orders, concurrency, historical data, LLM orchestration, validation, and report formatting.
